@@ -109,56 +109,6 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    # current_node = getStartState(problem)
-    # borda = [current_node]
-    # estados_expandidos = []
-    # current_neighbors = getSuccessors(current_node)
-
-    # should_run = True
-
-    # while(should_run):
-    #     borda = current_neighbors
-    #     estados_expandidos = estados_expandidos + [current_node]
-    #     current_node = 1
-
-    """ run with python pacman.py -l bigMaze -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic """
-
-    print(problem)
-
-    def _update(Frontier, item, priority):
-        for index, (p, c, i) in enumerate(Frontier.heap):
-            if i[0] == item[0]:
-                if p <= priority:
-                    break
-                del Frontier.heap[index]
-                Frontier.heap.append((priority, c, item))
-                heapq.heapify(Frontier.heap)
-                break
-        else:
-            Frontier.push(item, priority)
-
-    Frontier = util.PriorityQueue()
-    Visited = []
-    Frontier.push( (problem.getStartState(), []), heuristic(problem.getStartState(), problem) )
-    Visited.append( problem.getStartState() )
-
-    while Frontier.isEmpty() == 0:
-        state, actions = Frontier.pop()
-        #print state
-        if problem.isGoalState(state):
-            #print 'Find Goal'
-            return actions
-
-        if state not in Visited:
-            Visited.append( state )
-
-        for next in problem.getSuccessors(state):
-            n_state = next[0]
-            n_direction = next[1]
-            if n_state not in Visited:
-                _update( Frontier, (n_state, actions + [n_direction]), \
-                    problem.getCostOfActions(actions+[n_direction])+heuristic(n_state, problem) )
-
     util.raiseNotDefined()
 
 
